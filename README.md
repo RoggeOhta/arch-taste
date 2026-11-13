@@ -9,13 +9,14 @@
 
 ## 包含哪些偏好
 
+- **仓库责任** · Agent 对经手的仓库负责，主动跟进实现、验证和交付，处理影响交付的问题。
 - **技术选型** · 静态语言优先 Rust，动态技术栈优先 Bun + TypeScript。Web UI 优先考虑 TanStack，桌面 GUI 按原生交互与性能要求选 Tauri 或 GPUI。
 - **响应式 UI** · Web UI 尽量使用 `rem`、`%`、`vw`、`vh` 等相对单位，在不同视口尺寸下保持一致的视觉层级和比例。
 - **架构与代码** · 优先组合，分离纯逻辑与副作用，明确模块边界。采用语言惯用写法，保持代码和测试精简。
 - **性能与可靠性** · 关键操作记录日志，失败和降级可见。外部接口对可安全重试的错误做指数退避，性能提升用 benchmark 验证。
 - **开发与交付** · 新功能用 Git worktree，架构变更同步更新 `architecture.md`。合并到 `main` 和修改线上数据库需要用户明确同意。
 
-完整规则见 [SKILL.md](SKILL.md)。
+从 [SKILL.md](SKILL.md) 查看通用规则和各主题的阅读入口。
 
 ## 快速上手
 
@@ -23,6 +24,7 @@
 
 ```sh
 mkdir -p "$HOME/.agents/skills/arch-taste"
+cp -Ri references "$HOME/.agents/skills/arch-taste/"
 cp -i SKILL.md "$HOME/.agents/skills/arch-taste/SKILL.md"
 ```
 
@@ -36,12 +38,12 @@ $arch-taste 为一个新的跨平台 Rust CLI 做架构设计。只输出设计�
 
 ## 复制给你的 AI Agent
 
-把本项目的 GitHub 链接或 `SKILL.md` 一起交给 Agent，再发送下面这段话。
+把本项目的 GitHub 链接或包含 `SKILL.md` 和 `references/` 的目录交给 Agent，再发送下面这段话。
 
 ```text
-请读取我提供的 arch-taste 项目中的 SKILL.md，把它作为后续软件架构、技术选型和开发交付的工程偏好。
+请读取我提供的 arch-taste 项目中的 SKILL.md，并按任务读取它链接的细则，把它们作为后续软件架构、技术选型和开发交付的工程偏好。
 
-如果你是 Codex 或使用默认 Skill 目录的 DeepSeek Harness，请把 SKILL.md 安装到 ~/.agents/skills/arch-taste/SKILL.md。如果目标已有文件，先比较内容并告诉我差异。如果你使用其他 Agent，按当前工具支持的方式加载这份说明。
+如果你是 Codex 或使用默认 Skill 目录的 DeepSeek Harness，请把 SKILL.md 和 references/ 安装到 ~/.agents/skills/arch-taste/，保留相对目录结构。如果目标已有文件，先比较内容并告诉我差异。如果你使用其他 Agent，按当前工具支持的方式加载这份说明。
 
 接入后，告诉我实际加载的位置和调用方法。用一个新建跨平台 Rust CLI 的设计作为验证，说明共享 Cargo workspace、条件编译和模块边界怎么安排。验证只输出设计，不修改业务代码。
 ```
