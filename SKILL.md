@@ -1,6 +1,6 @@
 ---
 name: arch-taste
-description: 在设计或调整软件架构、技术选型、开发响应式 UI、编写代码、处理错误与重试、操作数据库、设计日志、分析性能、编写 GitHub README 和使用 Git worktree 时，应用用户的技术偏好。
+description: 在设计或调整软件架构、技术选型、开发响应式 UI、编写代码、处理错误与重试、操作数据库、设计日志、分析性能、编写 GitHub README、处理 GitHub Issue 和使用 Git worktree 时，应用用户的技术偏好。
 ---
 
 # 软件架构与工程偏好
@@ -19,6 +19,8 @@ description: 在设计或调整软件架构、技术选型、开发响应式 UI�
 
 ## 开发流程
 
+- 解决 GitHub Issue 时，先通过 Issue 的 **Development** 区域或 `gh issue develop 123` 创建关联分支。已有对应的关联分支就复用，并在该分支专用的 Git worktree 中开发。
+- 从关联分支提交指向仓库默认分支的 PR，在 PR 正文写明 `Closes #123`。合并前核对 PR 关联的 Issue，合并后确认 GitHub 已自动关闭该 Issue。
 - 开发新功能时，必须在该功能专用的 Git worktree 中修改代码。已有该功能的 worktree 就复用，否则在开始修改前创建一个。
 - 每个新建的 Rust Git worktree 都必须在首次构建前配置 `sccache`，复用工作区之间的共享编译缓存。
 - 只有用户明确要求合并到 `main` 时，才执行合并。
